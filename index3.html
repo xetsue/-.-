@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrohub</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: "Monospace", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 800px; 
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;
+                height: 400px; 
+            }
+        }
+
+        .square {
+            flex: 1; 
+            aspect-ratio: 1 / 1; 
+            border: 1.7px solid white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        @media (min-width: 600px) {
+            .square {
+                aspect-ratio: auto; 
+            }
+        }
+        
+        .square:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .hover-panel {
+        	padding: 10px;
+            position: absolute;
+            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            aspect-ratio: 1 / 1;  
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            border-radius: 10px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            font-size: 0.8em;
+            z-index: 10;
+            pointer-events: none; 
+        }
+
+        .square:hover .hover-panel {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a id="ascii-square" class="square" href="#" data-url="https://xetsue.github.io/ascii/">
+            <span class="label">ASCII</span>
+            <div class="hover-panel"><br><br><br><br>Image to ASCII.</div>
+        </a>
+        
+        <a id="pixel-square" class="square" href="#" data-url="https://xetsue.github.io/pixel/">
+            <span class="label">PIXEL</span>
+            <div class="hover-panel"><br><br><br><br>Pixelate Photos.</div>
+        </a>
+
+    </div>
+
+    <script>
+        document.getElementById('ascii-square').onclick = function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            } else {
+                console.log('Set your ASCII URL in the data-url attribute.');
+            }
+        };
+
+        document.getElementById('pixel-square').onclick = function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            } else {
+                console.log('Set your PIXEL URL in the data-url attribute.');
+            }
+        };
+    </script>
+
+</body>
+</html>
